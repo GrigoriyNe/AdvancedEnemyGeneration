@@ -1,7 +1,4 @@
-using System.Drawing;
 using UnityEngine;
-
-[RequireComponent(typeof(Renderer))]
 
 public class Target : MonoBehaviour
 {
@@ -9,13 +6,6 @@ public class Target : MonoBehaviour
     [SerializeField] private float _speed;
 
     private int _currentWaypoint = 0;
-    private Renderer _renderer;
-
-    private void Start()
-    {
-        _renderer = GetComponent<Renderer>();
-        _renderer.material.color = Random.ColorHSV();
-    }
 
     private void Update()
     {
