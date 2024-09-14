@@ -1,14 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Target))]
+
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
-    [SerializeField] private GameObject _target;
+    [SerializeField] private Target _target;
 
     private int _delayCreating = 2;
     private Coroutine _coroutine;
-    private WaitForSeconds _wait; 
 
     private void Start()
     {
@@ -18,21 +19,20 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator CreateWhithDelay()
     {
-        _wait = new WaitForSeconds(_delayCreating);
+        WaitForSeconds wait = new WaitForSeconds(_delayCreating);
 
         while (enabled)
         {
             Enemy enemy = Instantiate(_enemy);
 
             var startPosition = GetRandomStartPosition();
-            GameObject target = _target;
+            Target target = _target;
             var rotation = Quaternion.identity;
-            Vector3 rigidbody = Vector3.zero;
+            var velocity = Vector3.zero;
 
-            enemy.Init(startPosition, rotation, rigidbody, target);
+            enemy.Init(startPosition, rotation, velocity, target);
             
-
-            yield return _wait;
+            yield return wait;
         }
     }
 
