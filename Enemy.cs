@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 
     private Renderer _renderer;
     private Rigidbody _rigidbody;
-    private GameObject _target;
+    private Target _target;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
-    public void Init(Vector3 startPosition, Quaternion rotation, Vector3 velocity, GameObject target)
+    public void Init(Vector3 startPosition, Quaternion rotation, Vector3 velocity, Target target)
     {
         transform.position = startPosition;
         transform.rotation = rotation;
@@ -36,4 +36,3 @@ public class Enemy : MonoBehaviour
         transform.LookAt(_target.transform.position);
     }
 }
-
